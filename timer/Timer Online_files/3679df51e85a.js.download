@@ -1,0 +1,1 @@
+$(function(){var a=$("#menu-toggle"),b=$("#mobile-menu");(function(){a.on("click",function(a){a.preventDefault();b.slideToggle()});$(window).resize(function(){b.hide()})})()});

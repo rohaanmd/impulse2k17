@@ -1,0 +1,6 @@
+
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^backup\.impulse2k17\.in$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.backup\.impulse2k17\.in$
+RewriteRule ^/?$ "http\:\/\/impulse2k17\.in\/Backup" [R=301,L]
+

@@ -1,0 +1,1 @@
+$(function(){var b=$("#cookie-consent"),c=$("#cookie-consent-close");(function(){0>document.cookie.indexOf("cookie_consent")&&b.show();c.click(function(a){a.preventDefault();b.hide();a=new Date;a.setTime(a.getTime()+31536E7);document.cookie="cookie_consent=1; expires="+a.toGMTString()+"; path=/"})})()});
