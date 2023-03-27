@@ -20,10 +20,18 @@ $name=test_input($_POST["name"]);
 $cname=test_input($_POST["cname"]);
 $email=test_input($_POST["email"]);
 $pn=test_input($_POST["pn"]);
-$hdyfu=test_input($_POST["hdyfu"]);
+// $hdyfu=test_input($_POST["hdyfu"]);
+$hdyfu="Ajeeb";
 $event=(int)test_input($_POST["event"]);
-$ip1= $_SERVER['REMOTE_ADDR'];
-$ip2= $_SERVER['HTTP_CLIENT_IP']?$_SERVER['HTTP_CLIENT_IP']:($_SERVER['HTTP_X_FORWARDE‌​D_FOR']?$_SERVER['HTTP_X_FORWARDED_FOR']:$_SERVER['REMOTE_ADDR']);
+// $ip1= $_SERVER['REMOTE_ADDR'];
+// $ip2= $_SERVER['HTTP_CLIENT_IP']?$_SERVER['HTTP_CLIENT_IP']:($_SERVER['HTTP_X_FORWARDE‌​D_FOR']?$_SERVER['HTTP_X_FORWARDED_FOR']:$_SERVER['REMOTE_ADDR']);
+$ip1 = false;
+if (array_key_exists('HTTP_CLIENT_IP', $_SERVER))
+    $ip1 = $_SERVER['HTTP_CLIENT_IP'];
+
+$ip2 = false;
+if (array_key_exists('HTTP_X_FORWARDED_FOR',$_SERVER))
+    $ip2 = $_SERVER['HTTP_X_FORWARDED_FOR'];
 if($name=="" || $name==NULL)
 {
   $nerr="Please Enter a Name";
@@ -59,11 +67,15 @@ if($event<1 || $event>12)
 }
 if($f==1)
 {
+  
 $servername = "localhost";
-$username = "impuleo4_web";//USERNAME//$username="root";
-$password = "welcome0909";//PASSWORD//$password="";
+// $username = "impuleo4_web";//USERNAME
+$username="root";
+// $password = "welcome0909";//PASSWORD
+$password="";
 $dbname = "impuleo4_db";//"DATABASE NAME//$dbname="impulse2k17";
 $conn = new mysqli($servername, $username, $password, $dbname);
+
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: ");
@@ -100,9 +112,9 @@ else {
 </div>
 <div class="form-group">    <select class="form-control" name="event">
   <?php for($i=$index;$i<12;$i++)      {?>    <option value="<?php echo $i+1;?>"><?php echo $eventname[$i];?></option>  <?php }  for($i=0;$i<$index;$i++)  {?>    <option value="<?php echo $i+1;?>"><?php echo $eventname[$i];?></option>  <?php  }  ?>    </select></div>
-  <div class="form-group">
+  <!-- <div class="form-group">
     <input class="form-control" type="text" placeholder="How did you find us?" name="hdyfu" value="<?php echo $hdyfu; ?>"/>
-  </div>
+  </div> -->
 <div class="form-group">
     <label><?php echo $err; ?> </label>
 <input class="btn btn-primary hvr-grow-shadow hvr-round-corners btn-block" type="submit" name="register" value="Register"/>
